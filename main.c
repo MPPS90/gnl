@@ -12,18 +12,42 @@
     return
 } */
 
+//esto va en el .h 
+#ifndef BUFFER_SIZE 
+#  define BUFFER_SIZE 10
+
+#endif
+//hasta aquí va en el .h
+
 #include <unistd.h>
+#include <stddef.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 
 //esta funcion hace cosas
-int funcion()
+/*int funcion()
 {
 
-}
-
+}*/
 
 int main(int argc, char const *argv[])
 {
-    read();
-    funcion()
+    int fd;
+    char *buffer;
+    ssize_t num_bytes;
+
+    fd = open("doc.txt", O_RDONLY);
+    
+    buffer = calloc((15+1), sizeof(char));
+    num_bytes = read(fd, buffer, BUFFER_SIZE);
+
+    printf("%s\n", buffer);
+    printf("%zu", num_bytes);
     return 0;
+
+    //char *line; 
+    //line = get_next_line(0);
+    //funcion()
 }
