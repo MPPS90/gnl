@@ -6,8 +6,24 @@
 
 //info importante read: https://learn.microsoft.com/es-es/cpp/c-runtime-library/reference/read?view=msvc-170
 
-ssize_t read (int fd, void *buf, size_t nbytes)
+/* ssize_t read (int fd, void *buf, size_t nbytes)
 {
 
-    return;
+    return
+} */
+
+#include <unistd.h>
+
+//esta funcion hace cosas
+int funcion()
+{
+
+}
+
+
+int main(int argc, char const *argv[])
+{
+    read();
+    funcion()
+    return 0;
 }
