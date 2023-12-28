@@ -12,17 +12,10 @@
     return
 } */
 
-//esto va en el .h 
-#ifndef BUFFER_SIZE 
-#  define BUFFER_SIZE 1
-
-#endif
-//hasta aquí va en el .h
-
-#include <unistd.h> //lirería de read
-#include <stddef.h> 
+//#include <unistd.h> //lirería de read
+//#include <stddef.h> 
 #include <fcntl.h> //librería de open
-#include <stdlib.h> //librería de calloc
+//#include <stdlib.h> //librería de calloc
 #include <stdio.h> //librería printf
 #include "get_next_line.h"
 
@@ -37,19 +30,23 @@ int main(void)
 {
     int fd;
     int fd2;
-    //char *line_read;
+    char    *line_read;
     
     fd = open("doc.txt", O_RDONLY);
     fd2 = open("doc2.txt", O_RDONLY);
-    //line_read = get_next_line(fd);
+    line_read = get_next_line(fd);
      
     //printf("%s\n", line_read);
-    printf("%d", fd);
-    printf("\n%d", fd2);
+    printf("%d\n", fd);
+    //printf("\n%d", fd2);
     return 0;
-
-    //char *line; 
-    //line = get_next_line(0);
+    
     //funcion()
     //close()??? tengo que usarlo??
 }
+
+/* pendientes:
+-Tengo que meterlo while
+-plantear la variable static, en esta se supone  que se guarda hasat donde leyó para que en el siguiente while sepa desde donde debe empezar
+-
+*/
