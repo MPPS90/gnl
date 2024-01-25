@@ -1,6 +1,6 @@
 //fd: archivo a leer
-//buffer: Ubicación de almacenamiento de los datos.
-//Número máximo de bytes que se pueden leer.
+//buffer: Ubicación de almacenamiento de los datos. Aquí guarda lo que va leyendo.
+//buffer_size: Número de bytes a leer.
 //read del fd 4 en el buffer 5 bytes cada vez que se llama a la función
 //read puede recordar la posición actual dentro de el archivo (cada vez que lee?)
 
@@ -12,11 +12,6 @@
     return
 } */
 
-//#include <unistd.h> //lirería de read
-//#include <stddef.h> 
-#include <fcntl.h> //librería de open
-//#include <stdlib.h> //librería de calloc
-#include <stdio.h> //librería printf
 #include "get_next_line.h"
 
 
@@ -41,12 +36,9 @@ int main(void)
     //printf("\n%d", fd2);
     return 0;
     
-    //funcion()
-    //close()??? tengo que usarlo??
 }
 
 /* pendientes:
 -Tengo que meterlo while
--plantear la variable static, en esta se supone  que se guarda hasat donde leyó para que en el siguiente while sepa desde donde debe empezar
--
+-plantear la variable static, en esta se supone  que se guarda hasta donde leyó para que en el siguiente while sepa desde donde debe empezar
 */
