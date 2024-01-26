@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:35 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/01/25 21:17:23 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/01/26 22:22:12 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 # define FT_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE 
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 15
 # endif
 
 #include <unistd.h> //lirería read
-#include <stddef.h> 
+#include <stddef.h> //para el size_t
 #include <fcntl.h> //librería open
 #include <stdlib.h> //librería calloc
 #include <stdio.h> //librería printf
+#include <string.h> // librería strlen
 
 char    *get_next_line(int fd);
+void	ft_bzero(void *dst, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
+
 
 #endif

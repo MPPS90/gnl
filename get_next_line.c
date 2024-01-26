@@ -6,31 +6,55 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/01/25 19:45:23 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/01/26 22:27:41 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 char    *get_next_line(int fd)
 {
-    char *buffer;
+    char    *buffer;
     ssize_t num_bytes;
+    char    *read_line;
     
-    buffer = (char *)calloc((BUFFER_SIZE + 1), sizeof(char));
+    
+    buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
     if(buffer == NULL)
         return (NULL);
     num_bytes = read(fd, buffer, BUFFER_SIZE);
-    printf("%zd\n", num_bytes);
-    printf("%s\n", buffer);
-    printf("%lu\n", strlen(buffer));
+    
+    
+    read_line = ft_strjoin(buffer, read_line);
+    printf("NUM %zd\n", num_bytes);
+    printf("BUF %s\n", buffer);
+    printf("TAM BUFFER %lu\n", strlen(buffer));
+    printf("TAM BUFFER_SIZE %d\n", BUFFER_SIZE);
     return(buffer);
     //free(buffer);
 }
-/*int main(void)
+int main(void)
 {
-    int fd = 3;
-    get_next_line(fd);
+    int fd;
+    char    *line;
+    
+    fd = open("doc.txt", O_RDONLY);
+    line = get_next_line(fd);
+    printf("%s", line);    
     return 0;
-}*/
+}
+
+
+/*
+char    *get_next_line(fd)
+{
+    static char	*buffer;
+    //char		*line;
+	int			bytes;
+
+	buffer = (char *)malloc((BUFFER_SIZE + 1), sizeof(char));
+    num_bytes = read(fd, buffer, BUFFER_SIZE);
+	buffer[num_bytes] = '\0';
+	return(buffer);
+}
+*/
