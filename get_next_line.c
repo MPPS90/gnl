@@ -6,34 +6,60 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/01/27 14:17:46 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:16:48 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+/*size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+
+	j = ft_strlen(src);
+	i = 0;
+	if (dstsize == 0)
+	{
+		return (j);
+	}
+	while (src[i] != '\0' && i < (dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (j);
+}*/
 
 char    *get_next_line(int fd)
 {
     char    *buffer;
     ssize_t num_bytes;
-    char    *read_line;
+    static char *read_line;
+    char    *line;
     
     
     buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
     if(buffer == NULL)
         return (NULL);
-    
-    num_bytes = 1;
+    //para la primera lectura 
+    num_bytes = read(fd, buffer, BUFFER_SIZE);
     while(num_bytes > 0)
     {
-        num_bytes = read(fd, buffer, BUFFER_SIZE);
+        if(read_line == NULL)
+        {
+            
+        }
         read_line = ft_strjoin(read_line, buffer);
+        num_bytes = read(fd, buffer, BUFFER_SIZE);
+        
+                
     }
+    //line = 
     
-    
-    printf("NUM %zd\n", num_bytes);
-    printf("BUF %s\n", buffer);
-    printf("read_line:%s", read_line);
+    printf("NUM BYTES: %zd\n", num_bytes);
+    printf("BUF:%s\n", buffer);
+    printf("read_line:%s\n", read_line);
     printf("TAM BUFFER %lu\n", strlen(buffer));
     printf("TAM BUFFER_SIZE %d\n", BUFFER_SIZE);
     return(buffer);
@@ -46,7 +72,7 @@ int main(void)
     
     fd = open("doc.txt", O_RDONLY);
     line = get_next_line(fd);
-    printf("%s", line);    
+    printf("%s\n", line);    
     return 0;
 }
 
