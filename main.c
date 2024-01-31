@@ -1,6 +1,7 @@
 //fd: archivo a leer
-//buffer: Ubicación de almacenamiento de los datos. Aquí guarda lo que va leyendo.
+//buffer: PUNTERO a la ubicación de almacenamiento de los datos leídos. Aquí guarda lo que va leyendo.
 //buffer_size: Número de bytes a leer.
+//read= devulve la cantidad de bytes leídos. Si ocurre erros devuelve -1 
 //read del fd 4 en el buffer 5 bytes cada vez que se llama a la función
 //read puede recordar la posición actual dentro de el archivo (cada vez que lee?)
 

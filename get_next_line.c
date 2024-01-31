@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/01/27 17:16:48 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:35:26 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char    *get_next_line(int fd)
     {
         if(read_line == NULL)
         {
-            
+            read_line = "";    
         }
         read_line = ft_strjoin(read_line, buffer);
         num_bytes = read(fd, buffer, BUFFER_SIZE);
@@ -72,7 +72,7 @@ int main(void)
     
     fd = open("doc.txt", O_RDONLY);
     line = get_next_line(fd);
-    printf("%s\n", line);    
+    printf("Line main: %s\n", line);    
     return 0;
 }
 
