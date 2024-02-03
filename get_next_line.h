@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:35 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/03 12:25:55 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:55:38 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char    *get_next_line(int fd);
 //void	ft_bzero(void *dst, size_t size); PENDIENTE SI LA USO O NO POR AHORA NO LA ESTOY USANDO
 //void	*ft_calloc(size_t nmemb, size_t size); PENDIENTE SI LA USO O NO POR AHORA NO LA ESTOY USANDO
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strrchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/03 12:24:02 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/03 13:48:51 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s3[i] = '\0';
 	return (s3);
 }
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	unsigned char	aux;
 
-	i = ft_strlen(s);
-	while (i >= 0)
-	{
-		if ((char)s[i] == (char)c)
-			return ((char *) &s[i]);
-		i--;
-	}
-	return (0);
+	aux = c;
+	while (*s != '\0' && ((unsigned int)*s) != aux)
+		s++;
+	if (aux != ((unsigned int)*s))
+		return (NULL);
+	return ((char *)s);
 }
