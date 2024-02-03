@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/01 18:53:41 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/03 12:24:02 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_bzero(void *dst, size_t size)
+/*void	ft_bzero(void *dst, size_t size)
 {
 	unsigned char	*aux;
 	size_t			i;
@@ -36,7 +36,7 @@ void	ft_bzero(void *dst, size_t size)
 		aux[i] = 0;
 		i++;
 	}
-}
+}*
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -49,7 +49,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	}
 	ft_bzero(memory, (nmemb * size));
 	return (memory);
-}
+}*/
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
