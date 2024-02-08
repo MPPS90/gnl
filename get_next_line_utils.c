@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/05 23:08:14 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:18:30 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,6 @@ int	ft_strlen(const char *s)
 	}
 	return (i);
 }
-
-/*void	ft_bzero(void *dst, size_t size)
-{
-	unsigned char	*aux;
-	size_t			i;
-
-	i = 0;
-	aux = (unsigned char *) dst;
-	while (i < size)
-	{
-		aux[i] = 0;
-		i++;
-	}
-}*
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*memory;
-
-	memory = malloc(nmemb * size);
-	if (memory == NULL)
-	{
-		return (NULL);
-	}
-	ft_bzero(memory, (nmemb * size));
-	return (memory);
-}*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -94,16 +67,18 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*sub_s;
 	size_t	i;
+	size_t	len_char;
 
-	if (s == NULL)
+	len_char = ft_strlen(s);
+	sub_s = (char *)malloc(sizeof(char) * (len + 1));
+	if (s == NULL || sub_s == 0)
 		return (NULL);
-	if (start > (size_t)ft_strlen(s))
-		return (ft_strdup(""));
+	if (start > (size_t)ft_strlen(s))  //return (ft_strdup(""));
+		{
+			
+		};
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	sub_s = (char *)malloc(sizeof(char) * (len + 1));
-	if (sub_s == 0)
-		return (NULL);
 	i = 0;
 	while (i < len)
 	{
@@ -115,14 +90,14 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strdup(const char *s)
 {
-	char	*s_copy;
-	size_t	len_char;
+	char	*s_copy;//
+	size_t	len_char;//
 
-	len_char = ft_strlen(s);
-	s_copy = malloc((len_char + 1) * sizeof(char));
-	if (s == NULL || s_copy == NULL)
+	len_char = ft_strlen(s);//
+	s_copy = malloc((len_char + 1) * sizeof(char));//
+	if (s == NULL || s_copy == NULL)//
 	{
-		return (NULL);
+		return (NULL);//
 	}
 	ft_strlcpy(s_copy, s, (len_char + 1));
 	return (s_copy);
