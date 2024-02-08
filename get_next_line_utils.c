@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/03 14:04:54 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:08:14 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,41 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 	return ((char *)s);
 }
+
+/*char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub_s;
+	size_t	i;
+
+	if (s == NULL)
+		return (NULL);
+	if (start > (size_t)ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	sub_s = (char *)malloc(sizeof(char) * (len + 1));
+	if (sub_s == 0)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub_s[i++] = s[start++];
+	}
+	sub_s[i] = '\0';
+	return (sub_s);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*s_copy;
+	size_t	len_char;
+
+	len_char = ft_strlen(s);
+	s_copy = malloc((len_char + 1) * sizeof(char));
+	if (s == NULL || s_copy == NULL)
+	{
+		return (NULL);
+	}
+	ft_strlcpy(s_copy, s, (len_char + 1));
+	return (s_copy);
+}*/

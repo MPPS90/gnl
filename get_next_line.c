@@ -6,11 +6,31 @@
 /*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/03 13:50:39 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:07:39 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	j;
+
+	j = ft_strlen(src);
+	i = 0;
+	if (dstsize == 0)
+	{
+		return (j);
+	}
+	while (src[i] != '\0' && i < (dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (j);
+}*/
 
 char    *find(int fd)
 {
@@ -59,8 +79,19 @@ char    *find(int fd)
 
 /*char    *separate(char *read_line)
 {
+    char    *keep_line;
+    int start;
+    int i;
+
+    read_line = find()
     
-}*/
+    i=0;
+    while(read_line[i])
+    {
+        while 
+    }*/
+    
+    //keep_line = ft_substr(find,);}/*
 
 
 /*char    *get_next_line(int fd)
