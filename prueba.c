@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-char    *read_till_character(int fd)
+char    *read_till_character_new(int fd)
 {
     ssize_t num_bytes;
     char    buffer[BUFFER_SIZE];
@@ -33,7 +33,7 @@ char    *read_till_character(int fd)
     char    *line;
     
     fd = open("doc.txt", O_RDONLY);
-    line = read_till_character(fd); //ojo que aquí en el main debo llamar es a get_next_line hice cambio a find mientras organizo el código
+    line = read_till_character_new(fd); //ojo que aquí en el main debo llamar es a get_next_line hice cambio a find mientras organizo el código
     printf("Line main: >%s<\n", line);    
     return 0;
 }
