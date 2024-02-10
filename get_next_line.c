@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/10 14:10:11 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:05:39 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub_s[i] = '\0';
 	return (sub_s);
 }
-
-/*
-char    *read_till_character(int fd)
+char    *read_till_character(int fd, char *read_line)
 {
-    static char *read_line;
     char    *buffer;
     ssize_t num_bytes;
     char    *aux;//aux = no tengo que reservarle memoria porque apunta a lo que ya tiene apuntado read_line (es decir quee esa memoria ya se ha reservado)
@@ -55,22 +52,22 @@ char    *read_till_character(int fd)
     {
         num_bytes = read(fd, buffer, BUFFER_SIZE);
         buffer[num_bytes] = '\0';
-        printf("comprobación buffer: >%s<\n", buffer);
+        //printf("comprobación buffer: >%s<\n", buffer);
         aux = read_line;
         read_line = ft_strjoin(read_line, buffer);
         free(aux);
         aux = NULL;
-        printf("comprobación read_line:->%s<-\n", read_line);
+        //printf("comprobación read_line:->%s<-\n", read_line);
     }  
     free(buffer);
     buffer = NULL;
-    printf("return: %s\n", read_line); 
-    printf("buffer: %s\n", buffer);
-    printf("aux: %s\n", aux);
+    //printf("return: %s\n", read_line); 
+    //printf("buffer: %s\n", buffer);
+    //printf("aux: %s\n", aux);
     return(read_line); //read_line no debo liberarlo, no??
-
+    
     //AQUI HAY QUE LLAMAR A SEPARATE Y GNL LLAMA A READ_TILL_CHARACTER
-}*/
+}
 
 //**SEPARATE**
 //Aquí debería conectar de alguna manera lo que devuelve return con lo que sigue leyendo read
@@ -78,35 +75,37 @@ char    *read_till_character(int fd)
 //en lugar de esta función podría usar el split??? Devuelve todas las cadenas separadas según el caracter delimitador.
 //PARA PREGUNTAR:
 //En separate, debería pasar algo si c (o sea '\n') es un \0, entiendo que no porque quiere decir que no está el caracter entonces debería pasarme toda la cadena, n0?
-char    *separate(char *read_line, char c)
+char    *separate(char *read_line)
 {
     char    *keep_line;
     int start;
     int end;
     int i;
   
-    //start = ft_strchr(read_line, '\n');
+    //start = ft_strchr(read_line, '\n'); strchr devuelve un puntero (variable que almacena una dirección de memoria)a la primera ocurrencia del caracter especificado
     i=0;
-    while(read_line[i]) //RECORDAR ESTO QUE SIEMPRE LO PONGO SIN [i] Y HAGO UN BUCLE INFINITO
+    while(read_line[i]) //RECORDAR ESTO, QUE SIEMPRE LO PONGO SIN [i] Y HAGO UN BUCLE INFINITO
     {
-        while(read_line[i] == c && read_line[i] !='\0')
+        while(read_line[i] == '\n' && read_line[i] !='\0')
             i++;
         start = i;
-        while(read_line[i] != c && read_line[i] !='\0')
+        while(read_line[i] != '\n' && read_line[i] !='\0')
         {
             i++;
-            if (read_line[i] == c || read_line[i] == '\0')
-            {
+            if (read_line[i] == '\n' || read_line[i] == '\0')
                 end = i;
-                keep_line = ft_substr(read_line, start, end-start);
-            }
+            keep_line = ft_substr(read_line, start, end-start);
         }
     }
-    printf("%s\n", keep_line);
+    //printf("%s\n", keep_line);
     return(keep_line);
-    }
-    
-    
+}
+
+/*
+
+
+
+*/
     
     /*i=0;
     while(read_line[i])
@@ -117,44 +116,55 @@ char    *separate(char *read_line, char c)
     //keep_line = ft_substr(find,);
 
 
-/*char    *get_next_line(int fd)
+char    *get_next_line(int fd)
 {
+    static char *read_line;
     char    *final_line;
-    char    *final;
+    int i;
     
-    final_line = read_till_character(fd);
-    while(final_line)
-    {
-        final=ft_strchr(final_line);
-        final--;
-        printf("%s\n", final);
-    }
-    return final;
-}*/
+    read_line = read_till_character(fd, read_line);
+    printf("Devuelve %s\n", read_line);
+    i = 0;
 
+    while(read_line[i] != '\n' && read_line[i] != '\0') 
+    {
+        i++;      
+    }
+    final_line = ft_substr(read_line, 0, (i-0)); //si me sobran líneas ponerlo bonito
+    printf("La linea final => %s\n", final_line);
+
+    read_line = separate(read_line);
+    printf("Lo de despues %s\n", read_line);
+
+    //printf("%c\n", read_line[0]);
+    //printf("%c\n", (i-(read_line[0])));
+    //printf("%s\n", final_line);
+    return final_line;
+}
+    
 
     
 //main read_till_character pero debería ser el del gnl
-/*
-  int main(void)
+
+int main(void)
 {
     int fd;
     char    *line;
-    char    *line2;
+    //char    *line2;
     
     fd = open("doc.txt", O_RDONLY);
     //char *get_next_line(int fd);
-    line = read_till_character(fd); //ojo que aquí en el main debo llamar es a get_next_line hice cambio mientras organizo el código
+    line = get_next_line(fd); //ojo que aquí en el main debo llamar es a get_next_line hice cambio mientras organizo el código
     printf("Line main: %s\n", line); 
-    line2 = separate(fd, line);
-    printf("Line main: %s\n", line2);
+    /*line2 = separate(fd, line);
+    printf("Line main: %s\n", line2);*/
     return 0;
-}*/
+}
 
 //el main debería llevar un while porque debe leer el archivo constantemente
 
 //**MAIN SEPARATE**
-int main(void)
+/*int main(void)
 {
     char	*s;
 	char	c;
@@ -165,7 +175,7 @@ int main(void)
     new_s = separate(s, c);
     printf("%s\n", new_s);
     return 0;   
-}
+}*/
 
 
 

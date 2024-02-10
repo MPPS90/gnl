@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/10 11:03:45 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:30:31 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ char	*ft_strdup(const char *s)
 	ft_strlcpy(s_copy, s, (len_char + 1));
 	return (s_copy);
 }
-
-
 
 /*char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
