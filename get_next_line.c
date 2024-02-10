@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/09 23:52:07 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/10 14:10:11 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub_s);
 }
 
+/*
 char    *read_till_character(int fd)
 {
     static char *read_line;
@@ -46,7 +47,6 @@ char    *read_till_character(int fd)
     if(read_line == NULL)
         return (NULL);
     read_line[0] = '\0';
-    printf("PRIMERO: %s\n", read_line);
     buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
     if(buffer == NULL)
         return (NULL);
@@ -68,40 +68,45 @@ char    *read_till_character(int fd)
     printf("buffer: %s\n", buffer);
     printf("aux: %s\n", aux);
     return(read_line); //read_line no debo liberarlo, no??
-}
 
+    //AQUI HAY QUE LLAMAR A SEPARATE Y GNL LLAMA A READ_TILL_CHARACTER
+}*/
 
-char    *separate(int fd, char *read_line)
+//**SEPARATE**
+//Aquí debería conectar de alguna manera lo que devuelve return con lo que sigue leyendo read
+//substr hace un malloc hay que liberarlo
+//en lugar de esta función podría usar el split??? Devuelve todas las cadenas separadas según el caracter delimitador.
+//PARA PREGUNTAR:
+//En separate, debería pasar algo si c (o sea '\n') es un \0, entiendo que no porque quiere decir que no está el caracter entonces debería pasarme toda la cadena, n0?
+char    *separate(char *read_line, char c)
 {
-    //char    *keep_line;
-    //int start;
-    //int end;
-    //int i;*/
-
-    read_line = read_till_character(fd);
-    printf("%s", read_line);
-    
+    char    *keep_line;
+    int start;
+    int end;
+    int i;
+  
     //start = ft_strchr(read_line, '\n');
-    
-    /*
     i=0;
-    while(read_line)
+    while(read_line[i]) //RECORDAR ESTO QUE SIEMPRE LO PONGO SIN [i] Y HAGO UN BUCLE INFINITO
     {
-        while(read_line[i] !='\n')
+        while(read_line[i] == c && read_line[i] !='\0')
+            i++;
+        start = i;
+        while(read_line[i] != c && read_line[i] !='\0')
         {
-            if(read_line[i] =='\n' || read_line[i] !='\0')
-                i++;
-            start = i;
-            if (read_line[i] != '\n' || read_line[i] != '\0')
-                i++;
-            end = i;
+            i++;
+            if (read_line[i] == c || read_line[i] == '\0')
+            {
+                end = i;
+                keep_line = ft_substr(read_line, start, end-start);
+            }
         }
-        keep_line = ft_substr(read_line, start, end-start);
-        printf("%s\n", keep_line);
     }
-    */
+    printf("%s\n", keep_line);
+    return(keep_line);
+    }
     
-    return(read_line);
+    
     
     /*i=0;
     while(read_line[i])
@@ -110,7 +115,6 @@ char    *separate(int fd, char *read_line)
     }*/
     //ft_strchr(read_line, '\n'); //me da la direccion de memoria donde encuentra el caracter
     //keep_line = ft_substr(find,);
-}
 
 
 /*char    *get_next_line(int fd)
@@ -129,8 +133,9 @@ char    *separate(int fd, char *read_line)
 }*/
 
 
-//while (read_line == '\n')
     
+//main read_till_character pero debería ser el del gnl
+/*
   int main(void)
 {
     int fd;
@@ -144,9 +149,26 @@ char    *separate(int fd, char *read_line)
     line2 = separate(fd, line);
     printf("Line main: %s\n", line2);
     return 0;
-}
+}*/
 
 //el main debería llevar un while porque debe leer el archivo constantemente
+
+//**MAIN SEPARATE**
+int main(void)
+{
+    char	*s;
+	char	c;
+    char    *new_s;
+
+    c = ',';
+    s = "hola,HOLIWI,hello";
+    new_s = separate(s, c);
+    printf("%s\n", new_s);
+    return 0;   
+}
+
+
+
 
 
         // if(read_line == NULL)
