@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/10 19:05:39 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/11 09:13:43 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub_s[i] = '\0';
 	return (sub_s);
 }
+
 char    *read_till_character(int fd, char *read_line)
 {
     char    *buffer;
@@ -44,7 +45,7 @@ char    *read_till_character(int fd, char *read_line)
     if(read_line == NULL)
         return (NULL);
     read_line[0] = '\0';
-    buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+    buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));//en el malloc tiene sentido hacer el casteo inicial que tengo??
     if(buffer == NULL)
         return (NULL);
     num_bytes = 1;
@@ -54,6 +55,7 @@ char    *read_till_character(int fd, char *read_line)
         buffer[num_bytes] = '\0';
         //printf("comprobación buffer: >%s<\n", buffer);
         aux = read_line;
+        printf("comprobación q llega aux: %s\n", aux);
         read_line = ft_strjoin(read_line, buffer);
         free(aux);
         aux = NULL;
@@ -101,67 +103,46 @@ char    *separate(char *read_line)
     return(keep_line);
 }
 
-/*
-
-
-
-*/
-    
-    /*i=0;
-    while(read_line[i])
-    {
-        while 
-    }*/
-    //ft_strchr(read_line, '\n'); //me da la direccion de memoria donde encuentra el caracter
-    //keep_line = ft_substr(find,);
-
-
 char    *get_next_line(int fd)
 {
     static char *read_line;
     char    *final_line;
+    int start;
+    int end;
     int i;
     
     read_line = read_till_character(fd, read_line);
     printf("Devuelve %s\n", read_line);
+    start = 0;
     i = 0;
 
     while(read_line[i] != '\n' && read_line[i] != '\0') 
-    {
-        i++;      
-    }
-    final_line = ft_substr(read_line, 0, (i-0)); //si me sobran líneas ponerlo bonito
+        i++;
+    end = i;      
+    final_line = ft_substr(read_line, start, (end-start)); 
     printf("La linea final => %s\n", final_line);
-
     read_line = separate(read_line);
     printf("Lo de despues %s\n", read_line);
 
     //printf("%c\n", read_line[0]);
     //printf("%c\n", (i-(read_line[0])));
     //printf("%s\n", final_line);
-    return final_line;
+    return(final_line);
 }
     
-
     
-//main read_till_character pero debería ser el del gnl
-
+//**MAIN GNL**
+//el main debería llevar un while porque debe leer el archivo constantemente
 int main(void)
 {
     int fd;
     char    *line;
-    //char    *line2;
-    
+        
     fd = open("doc.txt", O_RDONLY);
-    //char *get_next_line(int fd);
-    line = get_next_line(fd); //ojo que aquí en el main debo llamar es a get_next_line hice cambio mientras organizo el código
+    line = get_next_line(fd); 
     printf("Line main: %s\n", line); 
-    /*line2 = separate(fd, line);
-    printf("Line main: %s\n", line2);*/
     return 0;
 }
-
-//el main debería llevar un while porque debe leer el archivo constantemente
 
 //**MAIN SEPARATE**
 /*int main(void)
@@ -176,15 +157,3 @@ int main(void)
     printf("%s\n", new_s);
     return 0;   
 }*/
-
-
-
-
-
-        // if(read_line == NULL)
-        // {
-        //     read_line = malloc(1);
-        //     if(read_line == NULL)
-        //         return (NULL);
-        //     read_line[0] = '\0';
-        // }

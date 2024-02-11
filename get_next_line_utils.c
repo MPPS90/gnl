@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/10 14:30:31 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/11 08:52:33 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,43 +98,3 @@ char	*ft_strdup(const char *s)
 	ft_strlcpy(s_copy, s, (len_char + 1));
 	return (s_copy);
 }
-
-/*char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*sub_s;
-	size_t	i;
-	size_t	len_char;
-
-	len_char = ft_strlen(s);
-	sub_s = (char *)malloc(sizeof(char) * (len + 1));
-	if (s == NULL || sub_s == 0)
-		return (NULL);
-	if (start > (size_t)ft_strlen(s))  //return (ft_strdup(""));
-		{
-			
-		};
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	i = 0;
-	while (i < len)
-	{
-		sub_s[i++] = s[start++];
-	}
-	sub_s[i] = '\0';
-	return (sub_s);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*s_copy;//
-	size_t	len_char;//
-
-	len_char = ft_strlen(s);//
-	s_copy = malloc((len_char + 1) * sizeof(char));//
-	if (s == NULL || s_copy == NULL)//
-	{
-		return (NULL);//
-	}
-	ft_strlcpy(s_copy, s, (len_char + 1));
-	return (s_copy);
-}*/
