@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:35 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/10 18:46:34 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/14 20:32:18 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE 
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 1
 # endif
 
 #include <unistd.h> //lirería read
