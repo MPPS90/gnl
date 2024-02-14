@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/14 20:32:44 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/14 23:09:29 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char    *read_till_character(int fd, char *read_line)
 {
     char    *buffer;
-    ssize_t num_bytes;
-    //char    *aux;//aux = no tengo que reservarle memoria porque apunta a lo que ya tiene apuntado read_line (es decir quee esa memoria ya se ha reservado)
-    
+    ssize_t num_bytes;//esto cambiarlo a int??
+        
     if(read_line == NULL)
     {
         read_line = malloc(sizeof(char));
@@ -84,9 +83,7 @@ char    *read_till_character(int fd, char *read_line)
     //printf("buffer: %s\n", buffer);
     //printf("aux: %s\n", aux);
     return(read_line); //read_line no debo liberarlo, no??
-    
-    //AQUI HAY QUE LLAMAR A SEPARATE Y GNL LLAMA A READ_TILL_CHARACTER
-}
+ }
 
 //**SEPARATE**
 //Aquí debería conectar de alguna manera lo que devuelve return con lo que sigue leyendo read
@@ -116,7 +113,7 @@ char    *separate(char *read_line)
         if (read_line[i] == '\n' || read_line[i] == '\0')
             end = i;
     }
-    keep_line = ft_substr(read_line, start, (start-i));
+    keep_line = ft_substr(read_line, start, (start-i));//esto debería fuera o dentro del bucle, da iguel, no?
     //printf("%s\n", keep_line);
     return(keep_line);
 }
@@ -132,7 +129,6 @@ char    *get_next_line(int fd)
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
     {
         free(read_line);
-        //read_line = NULL;
         return (NULL);
     }
     //printf("La estatica es %s\n", read_line);
@@ -147,12 +143,8 @@ char    *get_next_line(int fd)
         i++;
     while (read_line[i] == '\n')
         i++;
-    //if (read_line[i])
     end = i;      
     final_line = ft_substr(read_line, start, (end-start));
-    //final_line[i] = '\n';
-    //final_line = read_line;
-    //printf("La linea final: %s\n", final_line);
     read_line = separate(read_line);
     //printf("Lo de despues: %s\n", read_line);
 
@@ -161,42 +153,3 @@ char    *get_next_line(int fd)
     //printf("%s\n", final_line);
     return(final_line);
 }
-    
-    
-//**MAIN GNL**
-//el main debería llevar un while porque debe leer el archivo constantemente
-int main(void)
-{
-    int fd;
-    char    *line;
-        
-    fd = open("txt.txt", O_RDONLY);
-    //Porque con line voy línea a línea (no carácter por carácter) y el NULL indica final de fichero en este caso.
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        //line = get_next_line(fd); 
-        printf("%s\n", line);
-        free(line);
-       /*if(line == NULL)
-       {
-            printf("He llegao al final\n");
-            break ;
-        } */
-    }
-    close(fd);
-    return 0;
-}
-
-//**MAIN SEPARATE**
-/*int main(void)
-{
-    char	*s;
-	char	c;
-    char    *new_s;
-
-    c = ',';
-    s = "hola,HOLIWI,hello";
-    new_s = separate(s, c);
-    printf("%s\n", new_s);
-    return 0;   
-}*/

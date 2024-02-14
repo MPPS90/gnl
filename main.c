@@ -15,31 +15,43 @@
 
 #include "get_next_line.h"
 
-
-//esta funcion hace cosas
-/*int funcion()
-{
-
-}*/
-
+//**MAIN GNL**
+//el main debería llevar un while porque debe leer el archivo constantemente
 int main(void)
 {
     int fd;
-    int fd2;
-    char    *line_read;
-    
-    fd = open("doc.txt", O_RDONLY);
-    fd2 = open("doc2.txt", O_RDONLY);
-    line_read = get_next_line(fd);
-     
-    //printf("%s\n", line_read);
-    printf("%d\n", fd);
-    //printf("\n%d", fd2);
+    char    *line;
+        
+    fd = open("txt.txt", O_RDONLY);
+    //Porque con line voy línea a línea (no carácter por carácter) y el NULL indica final de fichero en este caso.
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        //line = get_next_line(fd); 
+        printf("%s\n", line);
+        free(line);
+       /*if(line == NULL)
+       {
+            printf("He llegao al final\n");
+            break ;
+        } */
+    }
+    close(fd);
     return 0;
-    
 }
 
-/* pendientes:
--Tengo que meterlo while
--plantear la variable static, en esta se supone  que se guarda hasta donde leyó para que en el siguiente while sepa desde donde debe empezar
-*/
+//**MAIN SEPARATE**
+/*int main(void)
+{
+    char	*s;
+	char	c;
+    char    *new_s;
+
+    c = ',';
+    s = "hola,HOLIWI,hello";
+    new_s = separate(s, c);
+    printf("%s\n", new_s);
+    return 0;   
+}*/
+
+//pendientes 14/02
+//Me está impriendo saltos de línea de más, pero no sé por qué, quizás es el substr, estuve tratando de darle una condición que solo cuando lea /n meta un espacio más..
