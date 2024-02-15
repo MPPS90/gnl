@@ -15,7 +15,24 @@
 
 #include "get_next_line.h"
 
-//**MAIN GNL**
+int main(void)
+{
+    int fd;
+    char    *line;
+
+    fd = open("txt.txt", O_RDONLY);
+
+    line = get_next_line(fd);
+    while(line != NULL)
+    {
+        printf("%s", line);
+        line = get_next_line(fd);
+    }
+    return 0;
+}
+
+/*
+//MAIN GNL**
 //el main debería llevar un while porque debe leer el archivo constantemente
 int main(void)
 {
@@ -29,15 +46,15 @@ int main(void)
         //line = get_next_line(fd); 
         printf("%s\n", line);
         free(line);
-       /*if(line == NULL)
+       if(line == NULL)
        {
             printf("He llegao al final\n");
             break ;
-        } */
+        } 
     }
     close(fd);
     return 0;
-}
+}*/
 
 //**MAIN SEPARATE**
 /*int main(void)

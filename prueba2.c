@@ -30,7 +30,7 @@ char    *read_till_character(int fd, char *read_line)
     //char    *aux;//aux = no tengo que reservarle memoria porque apunta a lo que ya tiene apuntado read_line (es decir quee esa memoria ya se ha reservado)
     
     if(read_line == NULL)
-        read_line = malloc(sizeof(char));
+        read_line = (char *)malloc(1 * sizeof(char));
         //return (NULL);
     read_line[0] = '\0';
     printf(">>>>ptr: %p\n", &read_line);

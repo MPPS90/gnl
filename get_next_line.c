@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/14 23:09:29 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:32:32 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char    *read_till_character(int fd, char *read_line)
 {
     char    *buffer;
-    ssize_t num_bytes;//esto cambiarlo a int??
+    ssize_t num_bytes;
+    char    *aux;
         
     if(read_line == NULL)
     {
@@ -66,16 +67,10 @@ char    *read_till_character(int fd, char *read_line)
             return (NULL);
         }
         buffer[num_bytes] = '\0';
-        
-        //printf("comprobación buffer: >%s<\n", buffer);
-        //aux = read_line;
-        //printf("comprobación q llega aux: %s\n", aux);
+        aux = read_line;
         read_line = ft_strjoin(read_line, buffer);
-        //printf("ptr: %p\n", &read_line);
-        //free(aux);
-        //aux = NULL; 
-        //printf("comprobación auxilar: %s\n",  aux);
-        //printf("comprobación read_line:->%s<-\n", read_line);
+        free(aux);
+        aux = NULL; 
     }  
     free(buffer);
     buffer = NULL;
@@ -113,7 +108,7 @@ char    *separate(char *read_line)
         if (read_line[i] == '\n' || read_line[i] == '\0')
             end = i;
     }
-    keep_line = ft_substr(read_line, start, (start-i));//esto debería fuera o dentro del bucle, da iguel, no?
+    keep_line = ft_substr(read_line, start, (start-end));//esto debería fuera o dentro del bucle, da iguel, no?
     //printf("%s\n", keep_line);
     return(keep_line);
 }
