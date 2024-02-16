@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/16 21:24:22 by mpena-so         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -38,15 +26,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char    *read_till_character(int fd, char *read_line)
 {
     char    *buffer;
-    ssize_t num_bytes;
+    size_t num_bytes;
     char    *aux;
-        
     if(read_line == NULL)
     {
         read_line = malloc(sizeof(char));
         if(read_line == NULL)
             return (NULL);
         read_line[0] = '\0';
+        printf("%s", read_line);
     }       
     //printf("\n\nLa estatica es  en readddd   %s\n\n", read_line);
     //printf(">>>>ptr: %p\n", &read_line);
@@ -54,32 +42,26 @@ char    *read_till_character(int fd, char *read_line)
     if(buffer == NULL)
         return (NULL);
     num_bytes = 1;
-    while(num_bytes > 0 && !ft_strchr(read_line, '\n'))
+    while ((!ft_strchr(read_line, '\n') && num_bytes > 0))
     {
         num_bytes = read(fd, buffer, BUFFER_SIZE);
-        if (num_bytes < 0)
+        if (num_bytes <= 0 || !read_line)
         {
             free(buffer);
-            free(read_line); // <------------------
             return (NULL);
-        }
-        if(num_bytes == 0) // <------------------------
-        {
-            free(buffer);
-            return (read_line);
         }
         // if(num_bytes == 0 && read_line == NULL)
         // {
+        //     free(buffer);
         //     return (NULL);
         // }
         buffer[num_bytes] = '\0';
         aux = read_line;
         read_line = ft_strjoin(read_line, buffer);
         free(aux);
-        aux = NULL; 
     }  
     free(buffer);
-    buffer = NULL;
+    // buffer = NULL;
     //printf("return: %s\n", read_line); 
     //printf("buffer: %s\n", buffer);
     //printf("aux: %s\n", aux);
@@ -99,19 +81,21 @@ char    *separate(char *read_line)
     int end;
     int i;
     //start = ft_strchr(read_line, '\n'); strchr devuelve un puntero (variable que almacena una dirección de memoria)a la primera ocurrencia del caracter especificado
-    i=0;
-    if (!read_line[0]) // POR VER
-        return (NULL);
-    while(read_line[i] && read_line[i] != '\n') // <------------------------------------------------------------------sgfault
+    i = 0;
+    if (!read_line[0] || read_line)
+	{
+		return (NULL);
+	}
+    while (read_line[i] != '\n' && read_line[i] != '\0')
         i++;
     //RECORDAR ESTO, QUE SIEMPRE LO PONGO SIN [i] Y HAGO UN BUCLE INFINITO
-    while(read_line[i] && read_line[i] == '\n')// <---------------------------------------------------------sgfault
+    while (read_line[i] == '\n' && read_line[i] != '\0')
         i++;
     start = i;
-    while( read_line[i] != '\n')// <-----------------------------------------------------------------sgfault
+    while(read_line[i] != '\n' && read_line[i] !='\0')
     {
         i++;
-        if (read_line[i] == '\0' && read_line[i] == '\n')// <--------------------------------------------sgfault
+        if (read_line[i] == '\n' || read_line[i] == '\0')
             end = i;
     }
     keep_line = ft_substr(read_line, start, (start-end));//esto debería fuera o dentro del bucle, da iguel, no?
@@ -122,14 +106,16 @@ char    *separate(char *read_line)
 char    *get_next_line(int fd)
 {
     static char *read_line;
-    char    *final_line;
-    int start;
-    int end;
-    int i;
+    char        *final_line;
+    int         start;
+    int         end;
+    int         i;
     
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
     {
-        free(read_line);
+        // free(read_line);
+        // free(final_line);
+        // final_line = NULL;
         return (NULL);
     }
     //printf("La estatica es %s\n", read_line);
@@ -137,15 +123,24 @@ char    *get_next_line(int fd)
     //printf("Devuelve read_till_line en main: %s\n", read_line);
     start = 0;
     i = 0;
-
     if (!read_line[0] || !read_line)
+    {   
+        free(read_line);
+        read_line = NULL;
         return (NULL);
+    }
     while(read_line[i] != '\n' && read_line[i] != '\0')
         i++;
-    while (read_line[i] && read_line[i] == '\n')  // <-------------------------sgfault
+    if (read_line[i] == '\n')
         i++;
     end = i;
-    final_line = ft_substr(read_line, start, (end-start));//TO SEE FOR UPDATES
+    final_line = ft_substr(read_line, start, end - start);
+	read_line = ft_substr(read_line, end, ft_strlen((const char *)read_line));
+	if (!final_line[0])
+	{
+		free(final_line);
+		final_line = NULL;
+	}
     read_line = separate(read_line);
     //printf("Lo de despues: %s\n", read_line);
 

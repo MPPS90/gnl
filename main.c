@@ -15,19 +15,28 @@
 
 #include "get_next_line.h"
 
+void    detect_leaks(void)
+{
+    system("leaks a.out");
+}
+
+
 int main(void)
 {
     int fd;
     char    *line;
 
+    // atexit(detect_leaks);
     fd = open("txt.txt", O_RDONLY);
 
-    line = get_next_line(fd);
-    while(line != NULL)
+    line = "";
+    while(line)
     {
-        printf("%s", line);
         line = get_next_line(fd);
+        printf("%s", line);
+        free(line);
     }
+    close(fd);
     return 0;
 }
 

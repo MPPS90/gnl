@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:35 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/15 19:30:41 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:17:46 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE 
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 42
 # endif
 
 #include <unistd.h> //lirería read
