@@ -6,10 +6,11 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 12:05:09 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:12:11 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "get_next_line.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -155,4 +156,4 @@ char    *get_next_line(int fd)
     return(final_line);
 }
 
-//ARCHIVO MAIN 
+*/

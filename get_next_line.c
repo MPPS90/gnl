@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 14:51:54 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:16:28 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char    *read_till_character(int fd, char *read_line)
         aux = read_line;
         read_line = ft_strjoin(read_line, buffer);
         free(aux);
-        aux = NULL; 
     }  
     return(free(buffer), buffer = NULL, read_line); 
 }
@@ -103,7 +102,6 @@ char    *get_next_line(int fd)
     char    *final_line;
     char    *aux;
     int start;
-    int end;
     int i;
     
     if (fd < 0 || BUFFER_SIZE <= 0)
@@ -120,10 +118,8 @@ char    *get_next_line(int fd)
         i++;
     while (read_line[i] == '\n')
         i++;
-    end = i;
     aux = read_line;
-    final_line = ft_substr(read_line, start, (end-start));
+    final_line = ft_substr(read_line, start, (i-start));
     read_line = separate(read_line);
-    free(aux);
-    return(final_line);
+    return(free(aux), aux = NULL, final_line);
 }
