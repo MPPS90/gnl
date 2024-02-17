@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 15:56:54 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:44:16 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char    *read_till_character(int fd, char *read_line)
     while(num_bytes > 0 && !ft_strchr(read_line, '\n'))
     {
         num_bytes = read(fd, buffer, BUFFER_SIZE);
-        if (num_bytes < 0)
+        if(num_bytes < 0)
         {
             free(buffer);
             free(read_line);
@@ -112,8 +112,17 @@ char    *get_next_line(int fd)
     read_line = read_till_character(fd, read_line);
     start = 0;
     i = 0;
-    if (!read_line[0] || !read_line)
+    /* con esto sale leaks
+    if (!read_line || !read_line[0])//intercambiando el lugar de estas dos comprobaciones ya no me salia segfault cuando le paso un fd que no existe
         return (NULL);
+    */
+    if (!read_line)//con esto sale abort
+        return (NULL);
+    if (!read_line[0])
+    {
+        free(read_line);
+        return (NULL);
+    }
     while(read_line[i] != '\n' && read_line[i] != '\0')
         i++;
     while (read_line[i] == '\n')

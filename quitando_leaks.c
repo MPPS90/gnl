@@ -1,5 +1,4 @@
 /*
-
 #include "get_next_line.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -151,4 +150,4 @@ char    *get_next_line(int fd)
     //printf("%s\n", final_line);
     return(final_line);
 }
-/*
+*/
