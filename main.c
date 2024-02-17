@@ -13,6 +13,7 @@
     return
 } */
 
+
 #include "get_next_line.h"
 
 void    detect_leaks(void)
@@ -26,7 +27,7 @@ int main(void)
     int fd;
     char    *line;
 
-    atexit(detect_leaks);
+    //atexit(detect_leaks);
     fd = open("txt.txt", O_RDONLY);
 
     line = "";
@@ -39,6 +40,7 @@ int main(void)
     close(fd);
     return 0;
 }
+
 
 /*
 //MAIN GNL**

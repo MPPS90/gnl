@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 15:16:28 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:56:54 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char    *read_till_character(int fd, char *read_line)
     char    *buffer;
     ssize_t num_bytes;
     char    *aux;
-        
+    
     if(read_line == NULL)
     {
         read_line = (char *)malloc(sizeof(char));
