@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 10:38:56 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:05:09 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char    *separate(char *read_line)
     while(read_line[i] && read_line[i] == '\n')// <---------------------------------------------------------sgfault
         i++;
     start = i;
-    while( read_line[i] != '\n')// <-----------------------------------------------------------------sgfault
+    while( read_line[i] != '\n')// <------ Este es el cambio que da segfault (se le quito !read_line[i])
     {
         i++;
         if (read_line[i] == '\0' && read_line[i] == '\n')// <--------------------------------------------sgfault

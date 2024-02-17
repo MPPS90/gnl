@@ -26,7 +26,7 @@ int main(void)
     int fd;
     char    *line;
 
-    // atexit(detect_leaks);
+    //atexit(detect_leaks);
     fd = open("txt.txt", O_RDONLY);
 
     line = "";
