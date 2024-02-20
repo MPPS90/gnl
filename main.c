@@ -25,10 +25,12 @@ void    detect_leaks(void)
 int main(void)
 {
     int fd;
+    //int fd2;
     char    *line;
 
-    //atexit(detect_leaks);
+    atexit(detect_leaks);
     fd = open("txt.txt", O_RDONLY);
+    //fd2 = open("main.c", O_RDONLY);
 
     line = "";
     while(line)
@@ -41,9 +43,16 @@ int main(void)
     return 0;
 }
 
-
 /*
-//MAIN GNL**
+    line = "";
+    while(line)
+    {
+        line = get_next_line(fd2);
+        printf("%s", line);
+        free(line);
+    }
+
+//MAIN GNL
 //el main debería llevar un while porque debe leer el archivo constantemente
 int main(void)
 {
@@ -67,7 +76,7 @@ int main(void)
     return 0;
 }*/
 
-//**MAIN SEPARATE**
+//MAIN SEPARATE
 /*int main(void)
 {
     char	*s;

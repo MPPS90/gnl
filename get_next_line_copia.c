@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/17 15:12:11 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:40:52 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char    *read_till_character(int fd, char *read_line)
     return(read_line); //read_line no debo liberarlo, no??
  }
 
-//**SEPARATE**
+//SEPARATE
 //Aquí debería conectar de alguna manera lo que devuelve return con lo que sigue leyendo read
 //substr hace un malloc hay que liberarlo
 //en lugar de esta función podría usar el split??? Devuelve todas las cadenas separadas según el caracter delimitador.

@@ -69,7 +69,7 @@ char    *read_till_character(int fd, char *read_line)
     return(read_line); //read_line no debo liberarlo, no??
  }
 
-//**SEPARATE**
+//SEPARATE
 //Aquí debería conectar de alguna manera lo que devuelve return con lo que sigue leyendo read
 //substr hace un malloc hay que liberarlo
 //en lugar de esta función podría usar el split??? Devuelve todas las cadenas separadas según el caracter delimitador.
