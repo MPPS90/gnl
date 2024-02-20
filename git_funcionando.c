@@ -1,3 +1,4 @@
+/*
 #include "get_next_line.h"
 
 //ESTO ES LO QUE ESTABA EN GIT CUANDO IMPRIMIA, PERO TENÍA LEAKS
@@ -137,4 +138,4 @@ char    *get_next_line(int fd)
     //printf("%c\n", (i-(read_line[0])));
     //printf("%s\n", final_line);
     return(final_line);
-}
+}*/
