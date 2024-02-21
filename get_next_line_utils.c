@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/11 08:52:33 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/21 18:46:38 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,37 +64,78 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
-	size_t	j;
+	unsigned char	*memory;
+	size_t			i;
 
-	j = ft_strlen(src);
 	i = 0;
-	if (dstsize == 0)
+	memory = malloc(nmemb * size);
+	if (memory == NULL)
+		return (NULL);
+	while (i < (nmemb * size))
 	{
-		return (j);
-	}
-	while (src[i] != '\0' && i < (dstsize - 1))
-	{
-		dst[i] = src[i];
+		memory[i] = 0;
 		i++;
 	}
-	dst[i] = '\0';
-	return (j);
+	return ((void *)memory);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*s_copy;
-	size_t	len_char;
+	char	*sub_s;
+	size_t	i;
 
-	len_char = ft_strlen(s);
-	s_copy = malloc((len_char + 1) * sizeof(char));
-	if (s == NULL || s_copy == NULL)
-	{
+	if (s == NULL)
 		return (NULL);
+    if (len == 0)
+        return (0);
+	if (start > (size_t)ft_strlen(s))
+		return (ft_calloc(1,1));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	sub_s = (char *)malloc(sizeof(char) * (len + 1));
+	if (sub_s == 0)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub_s[i++] = s[start++];
 	}
-	ft_strlcpy(s_copy, s, (len_char + 1));
-	return (s_copy);
+	sub_s[i] = '\0';
+	return (sub_s);
 }
+// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+// {
+// 	size_t	i;
+// 	size_t	j;
+
+// 	j = ft_strlen(src);
+// 	i = 0;
+// 	if (dstsize == 0)
+// 	{
+// 		return (j);
+// 	}
+// 	while (src[i] != '\0' && i < (dstsize - 1))
+// 	{
+// 		dst[i] = src[i];
+// 		i++;
+// 	}
+// 	dst[i] = '\0';
+// 	return (j);
+// }
+
+// char	*ft_strdup(const char *s)
+// {
+// 	char	*s_copy;
+// 	size_t	len_char;
+
+// 	len_char = ft_strlen(s);
+// 	s_copy = malloc((len_char + 1) * sizeof(char));
+// 	if (s == NULL || s_copy == NULL)
+// 	{
+// 		return (NULL);
+// 	}
+// 	ft_strlcpy(s_copy, s, (len_char + 1));
+// 	return (s_copy);
+// }
