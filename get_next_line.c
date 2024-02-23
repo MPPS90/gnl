@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/23 20:25:33 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:39:14 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*free_read_file(char *read_line, char *buffer)
 	return (read_line);
 }
 
-char	*read_till_character(int fd, char *read_line)
+char	*read_file(int fd, char *read_line)
 {
 	char	*buffer;
 	ssize_t	num_bytes;
@@ -92,7 +92,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (free(read_line), NULL);
-	read_line = read_till_character(fd, read_line);
+	read_line = read_file(fd, read_line);
 	if (!read_line)
 		return (NULL);
 	if (!read_line[0])

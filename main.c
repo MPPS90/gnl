@@ -11,7 +11,7 @@ int	main(void)
 	char	*line;
 
 	atexit(detect_leaks);
-	fd = open("txt.txt", O_RDONLY);
+	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
 	line = "";
 	while (line)
 	{
