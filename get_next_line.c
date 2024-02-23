@@ -6,17 +6,26 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/23 18:27:52 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:25:33 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*free_read_file(char *read_line, char *buffer)
+{
+	char	*aux;
+
+	aux = read_line;
+	read_line = ft_strjoin(read_line, buffer);
+	free(aux);
+	return (read_line);
+}
+
 char	*read_till_character(int fd, char *read_line)
 {
 	char	*buffer;
 	ssize_t	num_bytes;
-	char	*aux;
 
 	if (read_line == NULL)
 	{
@@ -32,20 +41,11 @@ char	*read_till_character(int fd, char *read_line)
 	{
 		num_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (num_bytes < 0)
-		{
-			free(buffer);
-			free(read_line);
-			return (NULL);
-		}
+			return (free(buffer), free(read_line), NULL);
 		if (num_bytes == 0)
-		{
-			free(buffer);
-			return (read_line);
-		}
+			return (free(buffer), read_line);
 		buffer[num_bytes] = '\0';
-		aux = read_line;
-		read_line = ft_strjoin(read_line, buffer);
-		free(aux);
+		read_line = free_read_file(read_line, buffer);
 	}
 	return (free(buffer), buffer = NULL, read_line);
 }
