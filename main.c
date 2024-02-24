@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	detect_leaks(void)
 {
@@ -7,18 +7,25 @@ void	detect_leaks(void)
 
 int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
 	char	*line;
 
 	atexit(detect_leaks);
-	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
+	fd1 = open("the_lord_of_the_rings.txt", O_RDONLY);
+	fd2 = open("txt.txt", O_RDONLY);
 	line = "";
 	while (line)
 	{
-		line = get_next_line(fd);
-		printf("%s", line);
+		line = get_next_line(fd1);
+		printf("fd1: %s", line);
+		free(line);
+		printf("\n-------------------------------\n");
+		line = get_next_line(fd2);
+		printf("fd2: %s", line);
 		free(line);
 	}
-	close(fd);
+	close(fd1);
+	close(fd2);
 	return (0);
 }
