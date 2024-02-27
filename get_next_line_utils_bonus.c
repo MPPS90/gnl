@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:48:47 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/24 11:48:58 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:46:54 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(const char *s)
 {

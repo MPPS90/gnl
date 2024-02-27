@@ -6,11 +6,11 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/24 13:24:43 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:42:38 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*free_read_file(char *read_line, char *buffer)
 {
