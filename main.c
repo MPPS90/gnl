@@ -5,6 +5,29 @@ void	detect_leaks(void)
 	system("leaks a.out");
 }
 
+//main sin bonus 
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	//atexit(detect_leaks);
+	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
+	line = "";
+	while (line)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		free(line);
+	}
+	printf("\n");
+	close(fd);
+	return (0);
+}
+
+
+//main con bonus 
+/*
 int	main(void)
 {
 	int		fd1;
@@ -28,4 +51,4 @@ int	main(void)
 	close(fd1);
 	close(fd2);
 	return (0);
-}
+}*/
