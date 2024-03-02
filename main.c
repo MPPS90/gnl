@@ -13,12 +13,16 @@ int	main(void)
 
 	//atexit(detect_leaks);
 	fd = open("txt.txt", O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
+	//line = get_next_line(fd);
+	line= "";
+	while (line)
 	{
+		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
-		line = get_next_line(fd);
+		//printf("%s", line);
+	
+		//line = NULL;
 	}
 	close(fd);
 	return (0);
