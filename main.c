@@ -12,18 +12,27 @@ int	main(void)
 	char	*line;
 
 	//atexit(detect_leaks);
-	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
-	line = "";
-	while (line)
+	fd = open("txt.txt", O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
+		line = get_next_line(fd);
 	}
-	printf("\n");
 	close(fd);
 	return (0);
 }
+
+/*
+i=0;
+while (i < 3)
+{
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	i++;
+}*/
 
 
 //main con bonus 
