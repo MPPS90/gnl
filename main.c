@@ -1,42 +1,49 @@
-#include "get_next_line_bonus.h"
+//#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 void	detect_leaks(void)
 {
 	system("leaks a.out");
 }
 
-//main sin bonus 
-int	main(void)
+//main sin bonus con null al final
+ int	main(void)
 {
 	int		fd;
 	char	*line;
 
 	//atexit(detect_leaks);
-	fd = open("txt.txt", O_RDONLY);
-	//line = get_next_line(fd);
+	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
 	line= "";
 	while (line)
 	{
 		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
-		//printf("%s", line);
-	
-		//line = NULL;
 	}
 	close(fd);
 	return (0);
 }
 
-/*
-i=0;
-while (i < 3)
+//main sin bonus sin null al final
+/* int	main(void)
 {
+	int		fd;
+	char	*line;
+
+	//atexit(detect_leaks);
+	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
 	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
-	i++;
-}*/
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
+} */
+
 
 
 //main con bonus 
