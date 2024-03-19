@@ -1,19 +1,39 @@
 //#include "get_next_line_bonus.h"
 #include "get_next_line.h"
 
-void	detect_leaks(void)
-{
-	system("leaks a.out");
-}
+// void	detect_leaks(void)
+// {
+// 	system("leaks a.out");
+// }
 
-//main sin bonus con null al final
- int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*line;
 
 	//atexit(detect_leaks);
-	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
+	fd = open("lord_rings.txt", O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		//fflush(NULL); //esto es por el uso del printf porque el printf lee hasta que se encuentra el salto de línea el texto que se le pasa, no tiene salto de línea al final por lo tanto no detecta ese final e imprime lo de los leaks entre medias
+		free(line);
+		line = get_next_line(fd);
+	}
+	printf("\n\n");
+	close(fd);
+	return (0);
+}
+
+//main sin bonus con null al final
+/*int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	atexit(detect_leaks);
+	fd = open("lord_rings.txt", O_RDONLY);
 	line= "";
 	while (line)
 	{
@@ -23,16 +43,16 @@ void	detect_leaks(void)
 	}
 	close(fd);
 	return (0);
-}
+}*/
 
-//main sin bonus sin null al final
-/* int	main(void)
+ //main sin bonus sin null al final
+/*  int	main(void)
 {
 	int		fd;
 	char	*line;
 
-	//atexit(detect_leaks);
-	fd = open("the_lord_of_the_rings.txt", O_RDONLY);
+	atexit(detect_leaks);
+	fd = open("lord_rings.txt", O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -42,7 +62,7 @@ void	detect_leaks(void)
 	}
 	close(fd);
 	return (0);
-} */
+}  */
 
 
 
