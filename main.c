@@ -22,7 +22,7 @@ int	main(void)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
+	free(line);//este free es porque en caso de que no entre en el while, line ya tiene algo y debe liberarse.
 	printf("\n\n");
 	close(fd);
 	return (0);
