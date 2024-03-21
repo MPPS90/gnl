@@ -12,8 +12,9 @@ int	main(void)
 	char	*line;
 
 	//atexit(detect_leaks);
-	fd = open("lord_rings.txt", O_RDONLY);
+	fd = open("gnl/lord_rings.txt", O_RDONLY);
 	line = get_next_line(fd);
+	printf("ACEDEEEEE\n");
 	while (line)
 	{
 		printf("%s", line);
@@ -21,6 +22,7 @@ int	main(void)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	printf("\n\n");
 	close(fd);
 	return (0);
