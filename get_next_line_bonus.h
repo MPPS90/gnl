@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:47:47 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/24 11:54:04 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:34:49 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);
-char	*read_file(int fd, char *read_line);
-char	*separate(char *read_line);
 
 #endif
