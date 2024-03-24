@@ -6,13 +6,13 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/02/23 21:39:14 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/03/24 20:25:44 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*free_read_file(char *read_line, char *buffer)
+static char	*free_read_file(char *read_line, char *buffer)
 {
 	char	*aux;
 
@@ -22,7 +22,7 @@ char	*free_read_file(char *read_line, char *buffer)
 	return (read_line);
 }
 
-char	*read_file(int fd, char *read_line)
+static char	*read_file(int fd, char *read_line)
 {
 	char	*buffer;
 	ssize_t	num_bytes;
@@ -50,7 +50,7 @@ char	*read_file(int fd, char *read_line)
 	return (free(buffer), buffer = NULL, read_line);
 }
 
-char	*separate(char *read_line)
+static char	*separate(char *read_line)
 {
 	char	*keep_line;
 	int		start;
@@ -70,7 +70,7 @@ char	*separate(char *read_line)
 	return (keep_line);
 }
 
-char	*get_final_line(char *read_line)
+static char	*get_final_line(char *read_line)
 {
 	char	*final_line;
 	int		i;
