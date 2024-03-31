@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/03/24 20:25:44 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/03/31 15:29:07 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,35 @@ char	*get_next_line(int fd)
 	if (!read_line)
 		return (NULL);
 	if (!read_line[0])
-		return (free(read_line), read_line = NULL, NULL);
+	{
+		free(read_line);
+		read_line = NULL;
+		return (NULL);
+	}
 	final_line = get_final_line(read_line);
 	aux = read_line;
 	read_line = separate(read_line);
-	return (free(aux), aux = NULL, final_line);
+	free(aux);
+	aux = NULL;
+	return (final_line);
 }
+
+/* int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	
+	fd = open("lord_rings.txt", O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	printf("\n\n");
+	close(fd);
+	return (0);
+} */

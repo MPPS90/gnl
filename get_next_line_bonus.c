@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/03/24 20:34:36 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:36:16 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,15 @@ char	*get_next_line(int fd)
 	if (!read_line[fd])
 		return (NULL);
 	if (!read_line[fd][0])
-		return (free(read_line[fd]), read_line[fd] = NULL, NULL);
+	{
+		free(read_line[fd]);
+		read_line[fd] = NULL;
+		return (NULL);
+	}
 	final_line = get_final_line(read_line[fd]);
 	aux = read_line[fd];
 	read_line[fd] = separate(read_line[fd]);
-	return (free(aux), aux = NULL, final_line);
+	free(aux);
+	aux = NULL;
+	return (final_line);
 }
