@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpena-so <mpena-so@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/04/01 17:23:44 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:33:14 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ char	*get_next_line(int fd)
 	char		*aux;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (free(read_line), NULL);
+	{
+		free(read_line);
+		return (NULL);
+	}
 	read_line = read_file(fd, read_line);
 	if (!read_line)
 		return (NULL);
