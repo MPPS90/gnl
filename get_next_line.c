@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/04/01 18:38:32 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:31:05 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ char	*get_next_line(int fd)
 	char	*line;
 
 	
-	fd = open("gnl/lord_rings.txt", O_RDONLY);
+	fd = open("lord_rings.txt", O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
