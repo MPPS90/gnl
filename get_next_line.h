@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:35 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/03/24 20:26:54 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:06:08 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@
 #  define BUFFER_SIZE 50
 # endif
 
-# include <fcntl.h>  //librería open
-# include <stddef.h> //para el size_t
-# include <stdlib.h> //librería calloc
-# include <string.h> // librería strlen
-# include <unistd.h> //lirería read
-# include <stdio.h>  //librería printf
+# include <fcntl.h>
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>  
 # include <limits.h>
 
 char	*get_next_line(int fd);

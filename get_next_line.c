@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/04/01 20:31:05 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:06:26 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*separate(char *read_line)
 	if (read_line[i] && read_line[i] == '\n')
 		i++;
 	start = i;
-	length = strlen(read_line) - i;
+	length = ft_strlen(read_line) - i;
 	keep_line = ft_substr(read_line, start, length);
 	return (keep_line);
 }
@@ -112,22 +112,25 @@ char	*get_next_line(int fd)
 	return (final_line);
 }
 
-/* int	main(void)
+/*
+# include <stdio.h>
+int	main(void)
 {
 	int		fd;
 	char	*line;
 
 	
 	fd = open("lord_rings.txt", O_RDONLY);
-	line = get_next_line(fd);
+	line = get_next_line(0);
 	while (line)
 	{
 		printf("%s", line);
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(0);
 	}
 	free(line);
 	printf("\n\n");
 	close(fd);
 	return (0);
-} */
+}
+*/
