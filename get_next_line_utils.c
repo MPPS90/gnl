@@ -6,7 +6,7 @@
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:05:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/04/03 22:04:56 by mpena-so         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:11:44 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*s3;
 	int		i;
@@ -45,10 +45,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	while (s2[j] != '\0')
-	{
 		s3[i++] = s2[j++];
-	}
 	s3[i] = '\0';
+	free(s1);
 	return (s3);
 }
 

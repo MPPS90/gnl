@@ -1,75 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/05 17:50:33 by mpena-so          #+#    #+#             */
+/*   Updated: 2024/04/05 20:20:18 by mpena-so         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //#include "get_next_line_bonus.h"
 //#include "get_next_line.h"
 
-/* void	detect_leaks(void)
-{
-	system("leaks a.out");
-} */
+/* 
+//main bueno....
+//igual de bueno como ignacio de partido (ignacio divido)
+#include <stdio.h>
 
-//main definitivo
-/* int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*line;
 
-	//atexit(detect_leaks);
-	fd = open("lord_rings.txt", O_RDONLY);
+	fd = open("/Users/mpena-so/Desktop/lord_rings.txt", O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
 		printf("%s", line);
-		//fflush(NULL); //esto es por el uso del printf porque el printf lee hasta que se encuentra el salto de línea el texto que se le pasa, no tiene salto de línea al final por lo tanto no detecta ese final e imprime lo de los leaks entre medias
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);//este free es porque en caso de que no entre en el while, line ya tiene algo y debe liberarse.
-	printf("\n\n");
+	free(line);
 	close(fd);
+    printf("\n\nBUFFER_SIZE = %d\n", BUFFER_SIZE);
+	system("leaks -q a.out");
 	return (0);
 } */
-
-//main sin bonus con null al final
-/*int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	atexit(detect_leaks);
-	fd = open("lord_rings.txt", O_RDONLY);
-	line= "";
-	while (line)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}*/
-
-//main con bonus 
-/*
-int	main(void)
-{
-	int		fd1;
-	int		fd2;
-	char	*line;
-
-	atexit(detect_leaks);
-	fd1 = open("the_lord_of_the_rings.txt", O_RDONLY);
-	fd2 = open("txt.txt", O_RDONLY);
-	line = "";
-	while (line)
-	{
-		line = get_next_line(fd1);
-		printf("fd1: %s", line);
-		free(line);
-		printf("\n-------------------------------\n");
-		line = get_next_line(fd2);
-		printf("fd2: %s", line);
-		free(line);
-	}
-	close(fd1);
-	close(fd2);
-	return (0);
-}*/

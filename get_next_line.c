@@ -5,22 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpena-so <mpena-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:04:56 by mpena-so          #+#    #+#             */
-/*   Updated: 2024/04/03 22:06:26 by mpena-so         ###   ########.fr       */
+/*   Created: 2024/04/05 17:46:56 by mpena-so          #+#    #+#             */
+/*   Updated: 2024/04/05 20:18:32 by mpena-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*free_read_file(char *read_line, char *buffer)
-{
-	char	*aux;
-
-	aux = read_line;
-	read_line = ft_strjoin(read_line, buffer);
-	free(aux);
-	return (read_line);
-}
 
 static char	*read_file(int fd, char *read_line)
 {
@@ -28,14 +18,10 @@ static char	*read_file(int fd, char *read_line)
 	ssize_t	num_bytes;
 
 	if (read_line == NULL)
-	{
 		read_line = (char *)ft_calloc(1, sizeof(char));
-		if (read_line == NULL)
-			return (NULL);
-	}
 	buffer = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
+	if (read_line == NULL || buffer == NULL)
+		return (free(read_line), free(buffer), NULL);
 	num_bytes = 1;
 	while (num_bytes > 0 && !ft_strchr(read_line, '\n'))
 	{
@@ -45,7 +31,9 @@ static char	*read_file(int fd, char *read_line)
 		if (num_bytes == 0)
 			return (free(buffer), read_line);
 		buffer[num_bytes] = '\0';
-		read_line = free_read_file(read_line, buffer);
+		read_line = ft_strjoin(read_line, buffer);
+		if (read_line == NULL)
+			return (NULL);
 	}
 	return (free(buffer), buffer = NULL, read_line);
 }
@@ -91,10 +79,7 @@ char	*get_next_line(int fd)
 	char		*aux;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		free(read_line);
 		return (NULL);
-	}
 	read_line = read_file(fd, read_line);
 	if (!read_line)
 		return (NULL);
@@ -111,26 +96,3 @@ char	*get_next_line(int fd)
 	aux = NULL;
 	return (final_line);
 }
-
-/*
-# include <stdio.h>
-int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	
-	fd = open("lord_rings.txt", O_RDONLY);
-	line = get_next_line(0);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(0);
-	}
-	free(line);
-	printf("\n\n");
-	close(fd);
-	return (0);
-}
-*/
